@@ -1,0 +1,30 @@
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+spring:
+  datasource:
+    # 数据库文件将生成在项目根目录下的 data 文件夹（需先手动创建该文件夹）
+    url: jdbc:sqlite:file-manager-database.db
+    driver-class-name: org.sqlite.JDBC
+  cache:
+    type: caffeine
+    caffeine:
+      spec: initialCapacity=100,maximumSize=5000,expireAfterWrite=10m
+
+mybatis-plus:
+  configuration:
+    # 开启 SQL 日志以便调试
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # SQLite 不支持复杂的分布式 ID，建议使用雪花算法或 UUID
+      id-type: assign_id
+
+# JWT 配置
+jwt:
+  # 密钥：必须大于 32 位（256位），建议使用随机生成的长字符串
+  secret: ${JWT_SECRET}
+  # 过期时间：单位毫秒，这里设置为 24 小时
+  expiration: ${JWT_EXP}

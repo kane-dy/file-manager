@@ -1,0 +1,10 @@
+server:
+  port: 8888
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+spring:
+  profiles:
+    active: local
