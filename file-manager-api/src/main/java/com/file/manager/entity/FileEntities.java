@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 @TableName("file_entities")
 public class FileEntities {
+    
     @TableId(value = "id",type = IdType.AUTO)
     private Long id;
 
@@ -24,27 +26,32 @@ public class FileEntities {
     private String    createdId;
 
     @TableField("created_at")
-    private String  createdAt;
+    private LocalDateTime createdAt;
 
-    public FileEntities(Long id, String fileHash, Long fileSize, String storagePath, String createdId, String createdAt) {
+    @TableField("status")
+    private Long status; // 0-上传中, 1-已完成
+
+    public FileEntities(Long id, String fileHash, Long fileSize, String storagePath, String createdId, LocalDateTime createdAt, Long status) {
         this.id = id;
         this.fileHash = fileHash;
         this.fileSize = fileSize;
         this.storagePath = storagePath;
         this.createdId = createdId;
         this.createdAt = createdAt;
+        this.status = status;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        FileEntities that = (FileEntities) o;
-        return Objects.equals(id, that.id) && Objects.equals(fileHash, that.fileHash) && Objects.equals(fileSize, that.fileSize) && Objects.equals(storagePath, that.storagePath) && Objects.equals(createdId, that.createdId) && Objects.equals(createdAt, that.createdAt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, fileHash, fileSize, storagePath, createdId, createdAt);
+    public String toString() {
+        return "FileEntities{" +
+                "id=" + id +
+                ", fileHash='" + fileHash + '\'' +
+                ", fileSize=" + fileSize +
+                ", storagePath='" + storagePath + '\'' +
+                ", createdId='" + createdId + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 
     public Long getId() {
@@ -87,11 +94,19 @@ public class FileEntities {
         this.createdId = createdId;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
     }
 }

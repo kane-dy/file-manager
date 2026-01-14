@@ -15,6 +15,7 @@ public class UserFiles {
 
     @TableField("user_id")
     private Long userId; //所属用户ID user_id
+
     @TableField("entity_id")
     private Long entityId; //指向物理文件ID（若是文件夹则此项为 NULL） entity_id
     // 目录层级核心字段
