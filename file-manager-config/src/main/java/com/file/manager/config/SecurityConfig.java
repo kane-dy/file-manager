@@ -23,15 +23,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-//    @Autowired
-//    private MyAuthenticationEntryPoint myAuthenticationEntryPoint;
-
-//    @Autowired
-//    private MySuccessHandler successHandler;
-//    @Autowired
-//    private MyFailureHandler failureHandler;
-//    @Autowired
-//    private JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Autowired
     private JwtSuccessHandler jwtSuccessHandler;
